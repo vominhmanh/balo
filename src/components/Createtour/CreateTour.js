@@ -10,7 +10,7 @@ export default function CreateTour(props) {
       <div className="row">
         <div className="col-sm-4">
           <FindPlace />
-          <GoogleMapsSearchBox />
+          {/* <GoogleMapsSearchBox /> */}
         </div>
         <div className="col-sm-8">
           <ActiveTourList />
