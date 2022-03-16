@@ -15,9 +15,9 @@ ReactDOM.render(
       <BrowserRouter>
         <App />
         <Routes>
-          <Route path={'/newjourney'} element={<CreateTour />} />
-          <Route exact path="/" element={<Portal />}></Route>
-          <Route exact path='/login' element={<Login/>}></Route>
+          <Route path={'newjourney'} element={<CreateTour />} />
+          <Route exact path="" element={<Portal />}></Route>
+          <Route exact path='login' element={<Login/>}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>

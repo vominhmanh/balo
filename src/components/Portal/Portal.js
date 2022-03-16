@@ -7,6 +7,8 @@ import EditIcon from '@mui/icons-material/Edit'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import NavigationIcon from '@mui/icons-material/Navigation'
 import CreateTour from '../Createtour/CreateTour'
+import JouneyItem from './JouneyItem'
+import ProfessionalJouneyItem from './ProfessionalJourneyItem'
 
 export default function Portal(props) {
   const AddingBtn = () => {
@@ -14,7 +16,7 @@ export default function Portal(props) {
       <Box
         sx={{
           '& > :not(style)': { m: 1 },
-          position: 'absolute',
+          position: 'fixed',
           bottom: 16,
           right: 16,
         }}
@@ -35,8 +37,13 @@ export default function Portal(props) {
   }
 
   return (
-    <>
+    <div>
+      <JouneyItem />
+      <ProfessionalJouneyItem />
+      <JouneyItem />
+      <JouneyItem />
+      <JouneyItem />
       <AddingBtn />
-    </>
+    </div>
   )
 }

@@ -17,7 +17,7 @@ export default function _Navbar(props) {
                 height="24"
                 className="d-inline-block align-text-top"
               />
-              &nbsp; Balo
+              &nbsp; Balo 
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar" />
