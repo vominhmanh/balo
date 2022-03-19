@@ -1,15 +1,15 @@
 import React from 'react'
 
-export default function JouneyItem(props) {
+export default function JourneyItem(props) {
   return (
     <div className="card mx-2 mt-4 mt-sm-0 bg-light">
       <div className="card-body">
         <h5 className="card-title">
           <div className="fs-6 text-nowrap fw-bold text-primary">
-            Hà Nội - Hà Giang - Quảng Ninh
+            {props.journey.name}
           </div>
           <small className="fs-6">
-            Chuyến đi 5N-6Đ của <b>Giang Rosy</b>
+            Chuyến đi { props.journey.journeyLength} của <b>{props.journey.author}</b>
           </small>
         </h5>
         <ol className="list-group list-group-numbered ">

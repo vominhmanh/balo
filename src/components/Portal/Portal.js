@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
-import EditIcon from '@mui/icons-material/Edit'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import NavigationIcon from '@mui/icons-material/Navigation'
-import CreateTour from '../Createtour/CreateTour'
-import JouneyItem from './JouneyItem'
-import ProfessionalJouneyItem from './ProfessionalJourneyItem'
-
+import { useEffect, useRef } from 'react'
+import journeyApi from '../../api/journeyApi'
+import JourneyItem from './JourneyItem'
+import EarthSpinning from '../Notification/EarthSpinning'
+import { v4 as uuidv4 } from 'uuid'
 export default function Portal(props) {
+  const [journeys, setJourneys] = useState([])
+  const [page, setPage] = useState(1)
+  const [lastElement, setLastElement] = useState(null)
   const AddingBtn = () => {
     return (
       <Box
@@ -36,13 +37,78 @@ export default function Portal(props) {
     )
   }
 
+  useEffect(() => {
+    //componentDidMount
+    const fetchJourneyList = async () => {
+      try {
+        const response = await journeyApi.get({ page: page, limit: '10' })
+        setJourneys((prevState) => {
+          return prevState.concat(response)
+        })
+      } catch (e) {
+        console.log('Failed to fetch jouney list. Error: ', e)
+      }
+    }
+
+    console.log('Fetching data...')
+    fetchJourneyList()
+    return () => {
+      //componentWillUnmount
+    }
+  }, [page]) //dependency // do once => empty array dependency
+
+  const options = useMemo(
+    () => ({
+      root: null,
+      rootMargin: '0px',
+      threshold: 0,
+    }),
+    [],
+  )
+
+  const targetRef = useRef()
+  useEffect(() => {
+    const observer = new IntersectionObserver((entry) => {
+      if (entry.isIntersecting) {
+        console.log('Visible')
+        setPage((prevState) => {
+          console.log(prevState++)
+          return prevState++
+        })
+      }
+    }, options)
+    //observer.observe(targetRef)
+  }, [lastElement])
+
   return (
     <div>
-      <JouneyItem />
+      {journeys.map((journey, index) => {
+        if (index == journeys.length - 1)
+          return (
+            <div key={uuidv4()}>
+              <JourneyItem journey={journey} key={uuidv4()} />
+              <div className="" ref={targetRef}></div>
+            </div>
+          )
+        else return <JourneyItem journey={journey} key={uuidv4()} />
+      })}
+
+      {/* <EarthSpinning ref={targetRef} /> */}
+      <div className="loading" id="loadingComponent">
+        <div className="loading-img text-center">
+          <img
+            width={'80%'}
+            src={require('../../datas/images/spinningEarth.gif')}
+          />
+        </div>
+        <div className="text-center">Đang tải nội dung...</div>
+      </div>
+      {/* <JouneyItem />
       <ProfessionalJouneyItem />
       <JouneyItem />
       <JouneyItem />
       <JouneyItem />
+      */}
       <AddingBtn />
     </div>
   )
