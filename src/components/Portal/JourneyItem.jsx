@@ -1,15 +1,16 @@
 import React from 'react'
 
-export default function JourneyItem(props) {
+function JourneyItem(props, ref) {
   return (
-    <div className="card mx-2 mt-4 mt-sm-0 bg-light">
+    <div className="card mx-2 mt-4 mt-sm-0 bg-light" ref={ref}>
       <div className="card-body">
         <h5 className="card-title">
           <div className="fs-6 text-nowrap fw-bold text-primary">
             {props.journey.name}
           </div>
           <small className="fs-6">
-            Chuyến đi { props.journey.journeyLength} của <b>{props.journey.author}</b>
+            Chuyến đi {props.journey.journeyLength} của{' '}
+            <b>{props.journey.author}</b>
           </small>
         </h5>
         <ol className="list-group list-group-numbered ">
@@ -30,3 +31,4 @@ export default function JourneyItem(props) {
     </div>
   )
 }
+export default React.forwardRef(JourneyItem)
