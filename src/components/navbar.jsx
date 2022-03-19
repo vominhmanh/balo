@@ -17,7 +17,7 @@ export default function _Navbar(props) {
                 height="24"
                 className="d-inline-block align-text-top"
               />
-              &nbsp; Balo 
+              &nbsp; Balo
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar" />
@@ -35,13 +35,13 @@ export default function _Navbar(props) {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="me-auto">
-                <Nav.Link as={Link} eventKey="/" to="/">
+                <Nav.Link as={Link} eventKey="/balo" to="/">
                   Trang chủ
                 </Nav.Link>
-                <Nav.Link as={Link} eventKey="/chuyendicuanam" to="/">
+                <Nav.Link as={Link} eventKey="/balo/chuyendicuanam" to="/">
                   Chuyến đi của năm
                 </Nav.Link>
-                <Nav.Link as={Link} eventKey="/login" to="/login">
+                <Nav.Link as={Link} eventKey="/balo/login" to="/login">
                   Đăng ký/ Đăng nhập
                 </Nav.Link>
               </Nav>

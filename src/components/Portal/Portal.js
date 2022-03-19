@@ -24,7 +24,7 @@ export default function Portal(props) {
       >
         <Fab
           color="primary"
-          to="/newjourney"
+          to="/balo/newjourney"
           component={Link}
           size="small"
           aria-label="add"
