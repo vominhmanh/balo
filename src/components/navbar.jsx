@@ -10,7 +10,7 @@ export default function _Navbar(props) {
       <Navbar bg="light" collapseOnSelect expand="lg">
         <Container fluid>
           <Navbar.Brand>
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand" to="/balo">
               <img
                 src={require('../datas/images/baloicon.png')}
                 width="30"
