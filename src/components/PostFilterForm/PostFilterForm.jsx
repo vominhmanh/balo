@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 PostFilterForm.propTypes = {
@@ -10,14 +11,23 @@ PostFilterForm.defaultProps = {
 function PostFilterForm(props) {
     const { onSubmit } = props;
     const { search, setSearch } = useState('')
+    const typingTimeoutRef = useRef(null)
     function handleSearchChange(e) {
-        setSearch(e.target.value)
-        if(!onSubmit) return;
-        const formValues = {
-            search,
+        const value = e.target.value
+        setSearch(value)
+        if (!onSubmit) return;
 
+        if(typingTimeoutRef.current){
+            clearTimeout(typingTimeoutRef.current)
         }
-        onSubmit(formValues)
+        typingTimeoutRef.current = setTimeout(() => {
+            const formValues = {
+                search: value,
+
+            }
+            onSubmit(formValues)
+        }, 300)
+
     }
 
     return (

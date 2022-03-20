@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Nav, NavDropdown, Navbar, Container, Offcanvas } from 'react-bootstrap'
-
+import PostFilterForm from './PostFilterForm/PostFilterForm'
 export default function _Navbar(props) {
   const [expanded, setExpanded] = useState(false)
+ function handleFiltersChange(newFilters){
 
+ }
   return (
     <>
       <Navbar bg="light" fixed="top" collapseOnSelect expand="lg">
@@ -19,12 +21,7 @@ export default function _Navbar(props) {
               />
               &nbsp; Balo
             </Link>
-            <>
-            <form class="d-flex">
-    <input class="form-control me-2" type="search" placeholder="Tìm kiếm địa chỉ..." aria-label="Search" />
-    <button class="btn btn-outline-success" type="submit">Search</button>
-  </form>
-            </>
+           <PostFilterForm onSubmit={handleFiltersChange} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar" />
           <Navbar.Offcanvas
