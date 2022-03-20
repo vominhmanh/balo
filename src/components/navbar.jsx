@@ -7,7 +7,7 @@ export default function _Navbar(props) {
 
   return (
     <>
-      <Navbar bg="light" collapseOnSelect expand="lg">
+      <Navbar bg="light" fixed="top" collapseOnSelect expand="lg">
         <Container fluid>
           <Navbar.Brand>
             <Link className="navbar-brand" to="/balo">
@@ -35,13 +35,17 @@ export default function _Navbar(props) {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="me-auto">
-                <Nav.Link as={Link} eventKey="/balo" to="/">
+                <Nav.Link as={Link} eventKey="/balo" to="/balo">
                   Trang chủ
                 </Nav.Link>
-                <Nav.Link as={Link} eventKey="/balo/chuyendicuanam" to="/">
+                <Nav.Link
+                  as={Link}
+                  eventKey="/balo/chuyendicuanam"
+                  to="/balo/chuyendicuanam"
+                >
                   Chuyến đi của năm
                 </Nav.Link>
-                <Nav.Link as={Link} eventKey="/balo/login" to="/login">
+                <Nav.Link as={Link} eventKey="/balo/login" to="/balo/login">
                   Đăng ký/ Đăng nhập
                 </Nav.Link>
               </Nav>
@@ -49,6 +53,10 @@ export default function _Navbar(props) {
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
+
+      <div className="align-navbar" style={{ height: '50px' }}>
+        .
+      </div>
     </>
   )
 }
