@@ -20,7 +20,7 @@ ReactDOM.render(
           <Route path={'/balo/newjourney'} element={<CreateTour />} />
           <Route exact path="/balo" element={<Portal />}></Route>
           <Route exact path="/balo/login" element={<Login />}></Route>
-          <Route exact path="/balo/searching" element={<Searching />}></Route>
+          <Route exact path="/balo/postfilterform" element={<PostFilterForm />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>

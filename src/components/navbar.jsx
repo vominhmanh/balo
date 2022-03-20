@@ -19,6 +19,12 @@ export default function _Navbar(props) {
               />
               &nbsp; Balo
             </Link>
+            <>
+            <form class="d-flex">
+    <input class="form-control me-2" type="search" placeholder="Tìm kiếm địa chỉ..." aria-label="Search" />
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+            </>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="offcanvasNavbar" />
           <Navbar.Offcanvas
