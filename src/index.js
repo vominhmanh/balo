@@ -9,6 +9,8 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 import Portal from './components/Portal/Portal'
 import CreateTour from './components/Createtour/CreateTour'
 import Login from './components/LoginRegister/Login/Login'
+import Searching from './components/Searching/Searching'
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -18,6 +20,7 @@ ReactDOM.render(
           <Route path={'/balo/newjourney'} element={<CreateTour />} />
           <Route exact path="/balo" element={<Portal />}></Route>
           <Route exact path="/balo/login" element={<Login />}></Route>
+          <Route exact path="/balo/searching" element={<Searching />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>
