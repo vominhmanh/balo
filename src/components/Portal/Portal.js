@@ -154,11 +154,11 @@ export default function Portal(props) {
   const fetchJourneyList = async () => {
     try {
       setLoading(true)
-      const response = await journeyApi.get({ page: page, limit: '10' })
+      const response = await journeyApi.get({ page: page })
       console.log(response)
-      if (response.length !== 0) {
+      if (response.paginatedData.data.length !== 0) {
         setJourneys((prevState) => {
-          return prevState.concat(response)
+          return prevState.concat(response.paginatedData.data)
         })
       } else {
         console.log('error changing', error)

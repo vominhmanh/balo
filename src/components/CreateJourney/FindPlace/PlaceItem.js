@@ -2,14 +2,14 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { activePlacesSlice } from '../../../redux/Createtour/activePlaceSlice'
-import { detailTabSlice } from '../../../redux/Createtour/detailTabSlice'
+import { activePlacesSlice } from '../../../redux/CreateJourney/activePlaceSlice'
+import { detailTabSlice } from '../../../redux/CreateJourney/detailTabSlice'
 
 export default function PlaceItem(props) {
   const dispatch = useDispatch()
   const clickHandler = (e) => {
     dispatch(
-      activePlacesSlice.actions.addPlaceToTourList({
+      activePlacesSlice.actions.addPlaceToJourneyList({
         place: props.place,
         startAt: undefined,
         finishAt: undefined,

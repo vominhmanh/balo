@@ -7,23 +7,26 @@ import store from './redux/store'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
 import Portal from './components/Portal/Portal'
-import CreateTour from './components/Createtour/CreateTour'
+import CreateJourney from './components/CreateJourney/CreateJourney'
 import Login from './components/LoginRegister/Login/Login'
 import Searching from './components/Searching/Searching'
+import { CookiesProvider } from 'react-cookie'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-        <Routes>
-          <Route path={'/balo/newjourney'} element={<CreateTour />} />
-          <Route exact path="/balo" element={<Portal />}></Route>
-          <Route exact path="/balo/login" element={<Login />}></Route>
-          <Route exact path="/balo/searching" element={<Searching />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+    <CookiesProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+          <Routes>
+            <Route path={'/balo/newjourney'} element={<CreateJourney />} />
+            <Route exact path="/balo" element={<Portal />}></Route>
+            <Route exact path="/balo/login" element={<Login />}></Route>
+            <Route exact path="/balo/searching" element={<Searching />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </CookiesProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 )

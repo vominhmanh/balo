@@ -1,6 +1,6 @@
 import logo from './logo.svg'
 import './App.css'
-import CreateTour from './components/Createtour/CreateTour'
+import CreateJourney from './components/CreateJourney/CreateJourney'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Portal from './components/Portal/Portal'
 import { Route, Routes, Link } from 'react-router-dom'
