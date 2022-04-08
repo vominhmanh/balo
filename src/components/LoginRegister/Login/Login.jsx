@@ -1,6 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
+import loginApi from '../../../api/loginApi'
 
 export default function Login(props) {
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [cookies, setCookie] = useCookies(['token'])
+  const navigate = useNavigate()
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    try {
+      const response = await loginApi.login({
+        email: email,
+        password: password,
+      })
+      console.log(response)
+      setCookie('token', response.data.token)
+      navigate('/balo')
+    } catch (error) {
+      console.log('Error:', error)
+    }
+  }
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value)
+  }
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value)
+  }
+
   return (
     <>
       <section className="ftco-section">
@@ -9,7 +40,7 @@ export default function Login(props) {
             <div className="col-md-7 col-lg-5">
               <div className="wrap">
                 <img
-                    width='100%'
+                  width="100%"
                   src={require('../../../datas/images/xach-balo-len-va-di-du-lich-2.jpeg')}
                 />
                 <div className="login-wrap p-4 p-md-5">
@@ -35,15 +66,24 @@ export default function Login(props) {
                       </h1>
                     </div>
                   </div>
-                  <form action="#" className="signin-form">
+                  <form
+                    action="#"
+                    onSubmit={handleSubmit}
+                    className="signin-form"
+                  >
                     <div className="form-group mt-3">
                       <label
                         className="form-control-placeholder"
                         htmlFor="username"
                       >
-                        Số điện thoại
+                        Email
                       </label>
-                      <input type="text" className="form-control" required />
+                      <input
+                        type="text"
+                        onChange={handleEmailChange}
+                        className="form-control"
+                        required
+                      />
                     </div>
                     <div className="form-group">
                       <label
@@ -55,6 +95,7 @@ export default function Login(props) {
                       <input
                         id="password-field"
                         type="password"
+                        onChange={handlePasswordChange}
                         className="form-control"
                         required
                       />

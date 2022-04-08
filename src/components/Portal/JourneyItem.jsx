@@ -14,10 +14,20 @@ function JourneyItem(props, ref) {
           </small>
         </h5>
         <ol className="list-group list-group-numbered ">
-          <li>Chùa Một Cột</li>
-          <li>Văn Miếu Quốc Tử Giám</li>
-          <li>Hồ Tây</li>
-          <div className="text-warning">+ 7 địa điểm khác</div>
+          {props.journey.places_with_detail[0] ? (
+            <li> {props.journey.places_with_detail[0].place.name}</li>
+          ) : null}
+          {props.journey.places_with_detail[1] ? (
+            <li> {props.journey.places_with_detail[1].place.name}</li>
+          ) : null}
+          {props.journey.places_with_detail[2] ? (
+            <li> {props.journey.places_with_detail[2].place.name}</li>
+          ) : null}
+          {props.journey.places_with_detail.length > 3 ? (
+            <div className="text-warning">
+              + {props.journey.places_with_detail.length - 3} địa điểm khác
+            </div>
+          ) : null}
         </ol>
         <div className="row text-center mt-3">
           <div className="col-3 text-primary">Thích</div>

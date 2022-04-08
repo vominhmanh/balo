@@ -6,7 +6,7 @@ export const activePlacesSlice = createSlice( {
     name: 'activePlaces',
     initialState: [],
     reducers: {
-        addPlaceToTourList: ( state, action ) => {
+        addPlaceToJourneyList: ( state, action ) => {
             state.push( action.payload )
         },
         removePlaceFromList: ( state, action ) => {

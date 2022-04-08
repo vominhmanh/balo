@@ -9,7 +9,7 @@ const initState = {
 
 const rootReducer = ( state = initState, anAction ) => {
 	switch ( anAction.type ) {
-		case 'Createtour/addPlaceToList':
+		case 'CreateJourney/addPlaceToList':
 			return {
 				...state,
 				activePlaces: [

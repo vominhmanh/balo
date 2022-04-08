@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux'
-import { activePlacesSlice } from '../../../redux/Createtour/activePlaceSlice'
+import { activePlacesSlice } from '../../../redux/CreateJourney/activePlaceSlice'
 import DetailTab from '../DetailOfPlace/DetailTab'
-import { detailTabSlice } from '../../../redux/Createtour/detailTabSlice'
+import { detailTabSlice } from '../../../redux/CreateJourney/detailTabSlice'
 
 export function ActivePlaceItem(props) {
   const dispatch = useDispatch()

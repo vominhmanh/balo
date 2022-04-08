@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Button, Offcanvas } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { activePlacesSlice } from '../../../redux/Createtour/activePlaceSlice'
-import { detailTabSlice } from '../../../redux/Createtour/detailTabSlice'
+import { activePlacesSlice } from '../../../redux/CreateJourney/activePlaceSlice'
+import { detailTabSlice } from '../../../redux/CreateJourney/detailTabSlice'
 
 export default function DetailTab(props) {
   const dispatch = useDispatch()

@@ -10,14 +10,18 @@
 import { configureStore, createStore } from '@reduxjs/toolkit'
 import rootReducer from './reducer.js'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { activePlacesSlice } from './Createtour/activePlaceSlice.js';
-import { detailTabSlice } from './Createtour/detailTabSlice.js'
+import { activePlacesSlice } from './CreateJourney/activePlaceSlice.js';
+import { detailTabSlice } from './CreateJourney/detailTabSlice.js'
+import { detailTabActiveJourneySlice } from './CreateJourney/detailTabActiveJourneySlice.jsx';
+import { activeJourneyDetailSlice } from './CreateJourney/activeJourneyDetailSlice.jsx';
 const composedEnhancers = composeWithDevTools()
 
 const store = configureStore({
     reducer: {
         activePlaces: activePlacesSlice.reducer,
         detailTab: detailTabSlice.reducer,
+        detailTabActiveJourney: detailTabActiveJourneySlice.reducer,
+        activeJourneyDetail: activeJourneyDetailSlice.reducer,
     }
 })
 

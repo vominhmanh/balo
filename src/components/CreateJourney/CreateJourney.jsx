@@ -1,10 +1,11 @@
 import React from 'react'
-import ActiveTourList from './ActiveTourList/ActiveTourList'
+import ActiveJourneyList from './ActiveJourneyList/ActiveJourneyList'
 import FindPlace from './FindPlace/FindPlace'
 import GoogleMapsSearchBox from './GooglePlaces/GoogleMapsSearchBox'
 import DetailTab from './DetailOfPlace/DetailTab'
+import ActiveJourneyDetailTab from './ActiveJourneyList/ActiveJourneyDetailTab'
 
-export default function CreateTour(props) {
+export default function CreateJourney(props) {
   return (
     <>
       <div className="row">
@@ -13,10 +14,11 @@ export default function CreateTour(props) {
           {/* <GoogleMapsSearchBox /> */}
         </div>
         <div className="col-sm-8">
-          <ActiveTourList />
+          <ActiveJourneyList />
         </div>
       </div>
       <DetailTab />
+      <ActiveJourneyDetailTab />
     </>
   )
 }
