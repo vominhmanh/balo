@@ -3,14 +3,18 @@ import { ActivePlaceItem } from './ActivePlaceItem'
 import { useDispatch, useSelector } from 'react-redux'
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
+import { useNavigate } from 'react-router-dom'
 import journeyApi from '../../../api/journeyApi'
 import { useCookies } from 'react-cookie'
 import { detailTabActiveJourneySlice } from '../../../redux/CreateJourney/detailTabActiveJourneySlice'
+import { activePlacesSlice } from '../../../redux/CreateJourney/activePlaceSlice'
+
 export default function ActiveJourneyList(props) {
   const activePlacesWithInfo = useSelector((state) => state.activePlaces)
   const activeJourneyDetail = useSelector((state) => state.activeJourneyDetail)
   const dispatch = useDispatch()
   const [cookies, setCookies] = useCookies()
+  const navigate = useNavigate()
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,6 +29,8 @@ export default function ActiveJourneyList(props) {
         places_with_detail: activePlacesWithInfo,
         token: cookies.token,
       })
+      dispatch(activePlacesSlice.actions.removeAllPlaces({}))
+      navigate('/onkey')
     } catch (e) {
       console.log(e)
     }

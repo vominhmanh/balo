@@ -1,36 +1,63 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useCookies } from 'react-cookie'
-import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, Link } from 'react-router-dom'
 import loginApi from '../../../api/loginApi'
+import { userLogSlice } from '../../../redux/User/userLogSlice'
+import ErrorMessage from '../../Notification/ErrorMessage'
+import PasswordInput from './PasswordInput'
 
 export default function Login(props) {
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  const [cookies, setCookie] = useCookies(['token'])
+  const [phonenumber, setPhonenumber] = useState('')
+  const [password, setPassword] = useState('')
+  const [cookies, setCookie, removeCookie] = useCookies(['access_token'])
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const passwordStartRef = useRef()
+  const loginRef = useRef()
+  const user = useSelector((state) => state.userLog.user)
+  const [submitError, setSubmitError] = useState('')
+
+  useEffect(() => {
+    if (user) {
+      navigate('/qrlock')
+    }
+  }, [])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
       const response = await loginApi.login({
-        email: email,
+        phonenumber: phonenumber,
         password: password,
       })
-      console.log(response)
-      setCookie('token', response.data.token)
-      navigate('/balo')
+      console.log(response.data.access_token)
+      removeCookie('access_token')
+      setCookie('access_token', response.data.access_token)
+      dispatch(
+        userLogSlice.actions.login({
+          access_token: response.data.access_token,
+          user: response.data.user,
+        }),
+      )
+      navigate('/qrlock')
     } catch (error) {
-      console.log('Error:', error)
+      setSubmitError(error.response.data.error)
     }
   }
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value)
+  const handlePhonenumberChange = (event) => {
+    setPhonenumber(event.target.value)
+    if (event.target.value.length == 10) {
+      passwordStartRef.current.focus()
+    }
   }
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value)
-  }
+  useEffect(() => {
+    if (password.length == 6) {
+      loginRef.current.click()
+    }
+  }, [password])
 
   return (
     <>
@@ -39,10 +66,18 @@ export default function Login(props) {
           <div className="row justify-content-center">
             <div className="col-md-7 col-lg-5">
               <div className="wrap">
-                <img
-                  width="100%"
-                  src={require('../../../datas/images/xach-balo-len-va-di-du-lich-2.jpeg')}
-                />
+                <h3 className="text-center my-3">
+                  <img
+                    src={require('../../../datas/images/onkey_logo.png')}
+                    width="40"
+                    height="40"
+                    className="d-inline-block"
+                  />
+                  <span style={{ color: '#7ed957' }}>
+                    {' '}
+                    Chìa khoá của tương lai
+                  </span>
+                </h3>
                 <div className="login-wrap p-4 p-md-5">
                   <div className="d-flex">
                     <div className="w-100">
@@ -74,14 +109,17 @@ export default function Login(props) {
                     <div className="form-group mt-3">
                       <label
                         className="form-control-placeholder"
-                        htmlFor="username"
+                        htmlFor="phonenumber"
                       >
-                        Email
+                        Số điện thoại
                       </label>
                       <input
-                        type="text"
-                        onChange={handleEmailChange}
+                        type="number"
+                        name="phonenumber"
+                        onChange={handlePhonenumberChange}
                         className="form-control"
+                        pattern="[0-9]*"
+                        inputMode="numeric"
                         required
                       />
                     </div>
@@ -92,17 +130,18 @@ export default function Login(props) {
                       >
                         Mật khẩu
                       </label>
-                      <input
-                        id="password-field"
-                        type="password"
-                        onChange={handlePasswordChange}
-                        className="form-control"
-                        required
+                      <PasswordInput
+                        ref={passwordStartRef}
+                        sendPasswordToParent={(password) => {
+                          setPassword(password)
+                        }}
                       />
                     </div>
+                    {submitError && <ErrorMessage error={submitError} />}
                     <div className="form-group mt-3">
                       <button
                         type="submit"
+                        ref={loginRef}
                         className="form-control btn btn-primary rounded submit px-3"
                       >
                         Đăng nhập
@@ -116,9 +155,9 @@ export default function Login(props) {
                   </form>
                   <p className="text-center mt-5">
                     Chưa có tài khoản?{' '}
-                    <a data-toggle="tab" href="#signup">
+                    <Link data-toggle="tab" to="/register">
                       Đăng ký ngay
-                    </a>
+                    </Link>
                   </p>
                 </div>
               </div>

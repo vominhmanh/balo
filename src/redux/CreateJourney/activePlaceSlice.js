@@ -18,8 +18,9 @@ export const activePlacesSlice = createSlice( {
             } else {
                 state.splice( action.payload.placeIndex, 1, action.payload.newPlaceWithInfo )
             }
-
-
+        },
+        removeAllPlaces: ( state, action ) => {
+            state.length = 0
         }
     },
 

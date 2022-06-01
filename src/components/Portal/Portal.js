@@ -121,7 +121,7 @@
 //     >
 //       <Fab
 //         color="primary"
-//         to="/balo/newjourney"
+//         to="/onkey/newjourney"
 //         component={Link}
 //         size="small"
 //         aria-label="add"
@@ -240,7 +240,7 @@ const AddingBtn = () => {
     >
       <Fab
         color="primary"
-        to="/balo/newjourney"
+        to="/onkey/newjourney"
         component={Link}
         size="small"
         aria-label="add"

@@ -5,26 +5,21 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 import store from './redux/store'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
-import Portal from './components/Portal/Portal'
-import CreateJourney from './components/CreateJourney/CreateJourney'
-import Login from './components/LoginRegister/Login/Login'
-import Searching from './components/Searching/Searching'
+import { HashRouter, BrowserRouter, Route, Routes } from 'react-router-dom'
 import { CookiesProvider } from 'react-cookie'
+import CreateJourney from './components/CreateJourney/CreateJourney'
+import Portal from './components/Portal/Portal'
+import Login from './components/LoginRegister/Login/Login'
+import Logout from './components/LoginRegister/Login/Logout'
+import QrIndex from './components/QrLock/QrIndex'
 
 ReactDOM.render(
   <React.StrictMode>
     <CookiesProvider>
       <Provider store={store}>
-        <BrowserRouter>
+        <HashRouter>
           <App />
-          <Routes>
-            <Route path={'/balo/newjourney'} element={<CreateJourney />} />
-            <Route exact path="/balo" element={<Portal />}></Route>
-            <Route exact path="/balo/login" element={<Login />}></Route>
-            <Route exact path="/balo/searching" element={<Searching />}></Route>
-          </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </Provider>
     </CookiesProvider>
   </React.StrictMode>,
